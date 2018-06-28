@@ -27,6 +27,20 @@ void Loader::run()
     }
 }
 
+Loader::Loader(const QString& filename)
+    : filename(filename) {}
+
+bool Loader::load(const QString& filename, std::vector<GLfloat>& vertices, std::vector<GLuint>& indices){
+    Loader loader(filename);
+    Mesh* mesh = loader.load_stl();
+    if(mesh != NULL){
+        mesh->getData(vertices,indices);
+        delete mesh;
+        return true;        
+    }
+    return false;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 void parallel_sort(Vertex* begin, Vertex* end, int threads)

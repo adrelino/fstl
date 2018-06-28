@@ -22,6 +22,11 @@ public:
     float zmax() const { return max(2); }
 
     bool empty() const;
+    
+    void getData(std::vector<GLfloat>& verts, std::vector<GLuint>& faces){
+        verts = std::move(vertices);
+        faces = std::move(indices);
+    }
 
 private:
     std::vector<GLfloat> vertices;

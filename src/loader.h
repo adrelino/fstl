@@ -11,6 +11,7 @@ class Loader : public QThread
 public:
     explicit Loader(QObject* parent, const QString& filename, bool is_reload);
     void run();
+    static bool load(const QString& filename, std::vector<GLfloat>& vertices, std::vector<GLuint>& indices);
 
 protected:
     Mesh* load_stl();
@@ -30,6 +31,7 @@ signals:
     void error_missing_file();
 
 private:
+    explicit Loader(const QString& filename);
     const QString filename;
     bool is_reload;
 
